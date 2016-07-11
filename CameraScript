@@ -1,0 +1,49 @@
+using UnityEngine;
+using System.Collections;
+
+public class CameraScript : MonoBehaviour {
+
+	public GameObject firstQuadranto;
+	public GameObject secondQuadranto;
+	public GameObject thirdQuadranto;
+	public GameObject fourthQuadranto;
+
+	public GameObject cameraPosition1;
+	public GameObject cameraPosition2;
+	public GameObject cameraPosition3;
+	public GameObject cameraPosition4;
+
+	public int rate = 1;
+
+	void Awake () {
+		firstQuadranto = GameObject.Find ("First Quadrant");
+		secondQuadranto = GameObject.Find ("Second Quadrant");
+		thirdQuadranto = GameObject.Find ("Third Quadrant");
+		fourthQuadranto = GameObject.Find ("Fourth Quadrant");
+
+		cameraPosition1 = GameObject.Find ("First Quadrant Camera");
+		cameraPosition2 = GameObject.Find ("Second Quadrant Camera");
+		cameraPosition3 = GameObject.Find ("Third Quadrant Camera");
+		cameraPosition4 = GameObject.Find ("Fourth Quadrant Camera");
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if ( firstQuadranto.GetComponent<QuadrantScript>().inQuadrant ) {
+			transform.position = Vector3.Lerp(transform.position, cameraPosition1.transform.position, rate * Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, cameraPosition1.transform.rotation, rate * Time.deltaTime);
+		}
+		if ( secondQuadranto.GetComponent<QuadrantScript>().inQuadrant) {
+			transform.position =  Vector3.Lerp(transform.position, cameraPosition2.transform.position, rate * Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, cameraPosition2.transform.rotation, rate * Time.deltaTime);
+		}
+		if ( thirdQuadranto.GetComponent<QuadrantScript>().inQuadrant) {
+			transform.position =  Vector3.Lerp(transform.position, cameraPosition3.transform.position, rate * Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, cameraPosition3.transform.rotation, rate * Time.deltaTime);
+		}
+		if ( fourthQuadranto.GetComponent<QuadrantScript>().inQuadrant) {
+			transform.position =  Vector3.Lerp(transform.position, cameraPosition4.transform.position, rate * Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, cameraPosition4.transform.rotation, rate * Time.deltaTime);
+		}
+	}
+}
